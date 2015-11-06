@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Prepares variables for paragraph templates.
+ *
+ * Default template: paragraph.html.twig.
+ *
+ * Most themes use their own copy of paragraph.html.twig. The default is located
+ * inside "templates/paragraph.html.twig". Look in there for the
+ * full list of variables.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An array of elements to display in view mode.
+ *   - paragraph: The paragraph object.
+ *   - view_mode: View mode; e.g., 'full', 'teaser'...
+ */
+function paragraphs_background_image_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['paragraph'];
+  if (!empty($paragraph->backgroundImages)) {
+    $variables['attributes']['style'][] = 'background: ' . implode(', ', $paragraph->backgroundImages);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "flowconcept/paragraphs_background_image",
+  "description": "Add background images to Drupal paragraphs",
+  "version": "master",
+  "type": "drupal-module",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "require": { }
+}
