@@ -22,9 +22,10 @@ function paragraphs_background_image_preprocess_paragraph(&$variables) {
     // @todo Separate classier_paragraphs code
     if ($paragraph->hasField('field_paragraphs_appearance')) {
       $appearance = $paragraph->field_paragraphs_appearance->first()->getValue();
-      if (isset($appearance['background']) && $appearance['background'] === 'background-custom') {
-        $variables['attributes']['style'][] = 'background: ' . implode(', ', $paragraph->backgroundImages);
+      if (isset($appearance['background']) && $appearance['background'] !== 'background-custom') {
+        return;
       }
     }
+    $variables['attributes']['style'][] = 'background: ' . implode(', ', $paragraph->backgroundImages);
   }
 }
