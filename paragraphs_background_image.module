@@ -16,8 +16,15 @@
  *   - view_mode: View mode; e.g., 'full', 'teaser'...
  */
 function paragraphs_background_image_preprocess_paragraph(&$variables) {
+  /** @var $paragraph \Drupal\paragraphs\Entity\Paragraph */
   $paragraph = $variables['paragraph'];
   if (!empty($paragraph->backgroundImages)) {
-    $variables['attributes']['style'][] = 'background: ' . implode(', ', $paragraph->backgroundImages);
+    // @todo Separate classier_paragraphs code
+    if ($paragraph->hasField('field_paragraphs_appearance')) {
+      $appearance = $paragraph->field_paragraphs_appearance->first()->getValue();
+      if (isset($appearance['background']) && $appearance['background'] === 'background-custom') {
+        $variables['attributes']['style'][] = 'background: ' . implode(', ', $paragraph->backgroundImages);
+      }
+    }
   }
 }
