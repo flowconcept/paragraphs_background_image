@@ -26,6 +26,6 @@ function paragraphs_background_image_preprocess_paragraph(&$variables) {
         return;
       }
     }
-    $variables['attributes']['style'][] = 'background: ' . implode(', ', $paragraph->backgroundImages);
+    $variables['attributes']['style'][] = 'background-image: ' . implode(', ', $paragraph->backgroundImages);
   }
 }
