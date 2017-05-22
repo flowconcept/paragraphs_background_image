@@ -66,8 +66,7 @@ class ParagraphsBackgroundImageFormatter extends ImageFormatter {
     $urls = [];
     foreach ($files as $delta => $file) {
       if (!empty($image_style)) {
-        $style = $this->imageStyleStorage->load($image_style);
-        $image_url = $style->buildUrl($file->getFileUri());
+        $image_url = $image_style->buildUrl($file->getFileUri());
       } else {
         $image_url = file_create_url($file->getFileUri());
       }
