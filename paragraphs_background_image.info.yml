@@ -2,6 +2,7 @@ name: 'Paragraphs background image formatter'
 type: module
 description: 'Provides an image formatter to display an image field as paragraph background.'
 core: 8.x
+core_version_requirement: ^8 || ^9
 package: Paragraphs
 
 dependencies:
