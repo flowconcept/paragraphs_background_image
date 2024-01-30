@@ -11,6 +11,7 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\image\Plugin\Field\FieldFormatter\ImageFormatter;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\paragraphs\Entity\Paragraph;
 
 
 /**
@@ -68,7 +69,7 @@ class ParagraphsBackgroundImageFormatter extends ImageFormatter {
       if (!empty($image_style)) {
         $image_url = $image_style->buildUrl($file->getFileUri());
       } else {
-        $image_url = file_create_url($file->getFileUri());
+        $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
       }
       $urls[] = 'url(' . $image_url . ')';
       $cache_tags = Cache::mergeTags($cache_tags, $file->getCacheTags());
@@ -80,7 +81,7 @@ class ParagraphsBackgroundImageFormatter extends ImageFormatter {
       );
     }
 
-    /* @var $entity \Drupal\paragraphs\Entity\Paragraph */
+    /* @var $entity Paragraph */
     $entity = $items->getParent()->getValue();
     $entity->backgroundImages = $urls;
 
